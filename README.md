@@ -1,6 +1,6 @@
 # Dataset
 
-The dataset consists of images from 5 different dog breeds. The training and validation data will be obtained through the Kaggle API. The API's functionality to download only metadata will be utilized to check for updates in the dataset, ensuring that the most current data is used.
+I will use a dataset containing images of 5 different dog breeds for image classifiaction. I will get the training and validation data trough kaggle API. I plan to download and check for updates uning the Kaggle API. The API allows you to only dowload the metadata. That way, I can easily check for updates in the dataset.
 
 # Project Explanation
 
