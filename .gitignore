@@ -4,3 +4,4 @@ mlartifacts/
 # *.bin
 # models/
 *.pkl
+data/
