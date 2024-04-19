@@ -1,10 +1,10 @@
 # Dataset
 
-I will use a dataset containing images of 5 different dog breeds for image classifiaction. I will get the training and validation data trough kaggle API. I plan to download and check for updates uning the Kaggle API. The API allows you to only dowload the metadata. That way, I can easily check for updates in the dataset.
+I will use a dataset containing images of all letters of the alfabet in sign language: https://www.kaggle.com/datasets/grassknoted/asl-alphabet. I will get the training and validation data trough kaggle API. I plan to download and check for updates uning the Kaggle API. The API allows you to only dowload the metadata. That way, I can easily check for updates in the dataset.
 
 # Project Explanation
 
-The goal of this project is to develop a machine learning model capable of classifying images into one of five dog breeds. 
+The goal of this project is to develop a machine learning model capable of interpreting sign language. I want to make i so the model and web server support batch processing, so you can make a word in sign language and the model will respond with an estimateof that word.
 
 # Flows & Actions
 
