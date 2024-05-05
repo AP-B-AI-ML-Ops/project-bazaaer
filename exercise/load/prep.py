@@ -43,10 +43,11 @@ def normalize_datasets(train_ds, val_ds):
 
 
 @task
-def save_datasets(train_ds_norm, val_ds_norm, output_dir: str):
-    os.makedirs(output_dir, exist_ok=True)
-    tf.data.experimental.save(train_ds_norm, os.path.join(output_dir, 'train'))
-    tf.data.experimental.save(val_ds_norm, os.path.join(output_dir, 'val'))
+def save_datasets(train_ds_norm, val_ds_norm, output_dir: str, needs_download: bool):
+    if not os.path.exists(output_dir) or needs_download:
+        os.makedirs(output_dir, exist_ok=True)
+        tf.data.experimental.save(train_ds_norm, os.path.join(output_dir, 'train'))
+        tf.data.experimental.save(val_ds_norm, os.path.join(output_dir, 'val'))
     return train_ds_norm, val_ds_norm
 
 
@@ -55,9 +56,10 @@ def preprocess_data_flow(data_dir: str = "../data/animal_data",
                          img_height: int = 224, 
                          img_width: int = 224, 
                          batch_size: int = 32,
-                         output_dir: str = "../data/animal_data_preprocessed"):
+                         output_dir: str = "../data/animal_data_preprocessed",
+                         needs_download: bool = True):
     train_ds, val_ds = load_datasets(data_dir, img_height, img_width, batch_size)
     train_ds, val_ds = prepare_datasets(train_ds, val_ds)
     train_ds_norm, val_ds_norm = normalize_datasets(train_ds, val_ds)
-    train_ds_norm, val_ds_norm = save_datasets(train_ds_norm, val_ds_norm, output_dir)
+    train_ds_norm, val_ds_norm = save_datasets(train_ds_norm, val_ds_norm, output_dir, needs_download=needs_download)
     return train_ds_norm, val_ds_norm

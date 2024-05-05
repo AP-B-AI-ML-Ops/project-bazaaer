@@ -50,6 +50,7 @@ def dataset_download_flow(dataset_name:str = "likhon148/animal-data", dataset_pa
     metadata_file = os.path.join(dataset_path, "animal_data_metadata.json")
 
     exists = check_dataset_exists(dataset_path)
+    needs_download = True
 
     if not exists:
         api = authenticate_kaggle()
@@ -63,3 +64,4 @@ def dataset_download_flow(dataset_name:str = "likhon148/animal-data", dataset_pa
         
         if needs_download:
             download_dataset(api, dataset_name, dataset_path, metadata_file)
+    return needs_download
