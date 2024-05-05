@@ -46,7 +46,7 @@ def download_dataset(api, dataset_name:str, dataset_path:str, metadata_file:str)
         json.dump(remote_metadata, file)
 
 @flow
-def dataset_download_flow(dataset_name:str, dataset_path:str):
+def dataset_download_flow(dataset_name:str = "likhon148/animal-data", dataset_path:str = "../data"):
     metadata_file = os.path.join(dataset_path, "animal_data_metadata.json")
 
     exists = check_dataset_exists(dataset_path)

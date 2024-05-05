@@ -23,7 +23,7 @@ deployments:
   version:
   tags: []
   description:
-  entrypoint: fetch/fetch.py:dataset_download_flow
+  entrypoint: load/fetch.py:dataset_download_flow
   parameters: {}
   work_pool:
     name: local_pool

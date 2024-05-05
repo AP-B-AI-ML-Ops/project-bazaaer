@@ -51,11 +51,11 @@ def save_datasets(train_ds_norm, val_ds_norm, output_dir: str):
 
 
 @flow
-def preprocess_data_flow(data_dir: str = "../../data/animal_data", 
+def preprocess_data_flow(data_dir: str = "../data/animal_data", 
                          img_height: int = 224, 
                          img_width: int = 224, 
                          batch_size: int = 32,
-                         output_dir: str = "../../data/animal_data_preprocessed"):
+                         output_dir: str = "../data/animal_data_preprocessed"):
     train_ds, val_ds = load_datasets(data_dir, img_height, img_width, batch_size)
     train_ds, val_ds = prepare_datasets(train_ds, val_ds)
     train_ds_norm, val_ds_norm = normalize_datasets(train_ds, val_ds)

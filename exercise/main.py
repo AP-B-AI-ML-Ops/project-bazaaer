@@ -6,6 +6,12 @@ import mlflow
 DATASET_NAME = "likhon148/animal-data"
 DATASET_PATH = "../data"
 
+hyperparameters = {
+    'l2_reg': [.1,.01,.001],
+    'dropout_rate': [0.2, 0.3, 0.4],
+    'learning_rate': [1e-3, 5e-4, 1e-4]
+}
+
 @flow
 def main_flow():
     print("start main flow")
