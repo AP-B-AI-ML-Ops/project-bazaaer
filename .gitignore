@@ -5,3 +5,4 @@ mlartifacts/
 # models/
 *.pkl
 data/
+__pycache__/
