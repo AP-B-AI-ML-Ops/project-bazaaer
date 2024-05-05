@@ -41,3 +41,14 @@ deployments:
     work_queue_name:
     job_variables: {}
   schedules: []
+- name: preprocess_data_flow
+  version:
+  tags: []
+  description:
+  entrypoint: load/prep.py:preprocess_data_flow
+  parameters: {}
+  work_pool:
+    name: local_pool
+    work_queue_name:
+    job_variables: {}
+  schedules: []
