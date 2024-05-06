@@ -17,7 +17,7 @@ def main_flow():
     print("start main flow")
 
     needs_download = dataset_download_flow(DATASET_NAME, DATASET_PATH)
-    preprocess_data_flow(data_dir=f"{DATASET_PATH}/animal_data", output_dir=f"{DATASET_PATH}/animal_data_preprocessed", img_height=224, img_width=224, batch_size=32, needs_download=needs_download)
+    train_ds, val_ds = preprocess_data_flow(data_dir=f"{DATASET_PATH}/animal_data", output_dir=f"{DATASET_PATH}/animal_data_preprocessed", img_height=224, img_width=224, batch_size=32, needs_download=needs_download)
 
     mlflow.set_tracking_uri("sqlite:///mlflow.db")
 

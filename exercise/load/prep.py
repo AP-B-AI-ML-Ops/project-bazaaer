@@ -1,6 +1,5 @@
 from prefect import task, flow
 from tensorflow.keras import layers
-
 import tensorflow as tf
 import os
 
