@@ -52,3 +52,14 @@ deployments:
     work_queue_name:
     job_variables: {}
   schedules: []
+- name: hpo_flow
+  version:
+  tags: []
+  description:
+  entrypoint: train/hpo.py:hyperparameter_optimization_flow
+  parameters: {}
+  work_pool:
+    name: local_pool
+    work_queue_name:
+    job_variables: {}
+  schedules: []

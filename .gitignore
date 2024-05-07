@@ -6,3 +6,4 @@ mlartifacts/
 *.pkl
 data/
 __pycache__/
+tuner_dir/
