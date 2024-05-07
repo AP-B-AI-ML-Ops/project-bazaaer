@@ -63,3 +63,14 @@ deployments:
     work_queue_name:
     job_variables: {}
   schedules: []
+- name: model_training_flow
+  version:
+  tags: []
+  description:
+  entrypoint: train/train.py:model_training_flow
+  parameters: {}
+  work_pool:
+    name: local_pool
+    work_queue_name:
+    job_variables: {}
+  schedules: []
