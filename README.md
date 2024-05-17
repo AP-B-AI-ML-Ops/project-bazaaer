@@ -1,6 +1,6 @@
 # Dataset
 
-I will use a dataset containing images of all letters of the alfabet in sign language: https://www.kaggle.com/datasets/grassknoted/asl-alphabet. I will get the training and validation data trough kaggle API. I plan to download and check for updates uning the Kaggle API. The API allows you to only dowload the metadata. That way, I can easily check for updates in the dataset.
+I will use a dataset containing images of various animals: https://www.kaggle.com/datasets/grassknoted/asl-alphabet. I will get the training and validation data trough kaggle API. I plan to download and check for updates uning the Kaggle API. The API allows you to only dowload the metadata. That way, I can easily check for updates in the dataset.
 
 # Project Explanation
 
