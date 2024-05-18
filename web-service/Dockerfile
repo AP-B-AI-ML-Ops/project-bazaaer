@@ -9,5 +9,4 @@ COPY app.py /app
 
 EXPOSE 9696
 
-# ENTRYPOINT ["gunicorn", "--bind", "0.0.0.0:9696", "app:app"]
-CMD ["python", "app.py"]
+ENTRYPOINT ["gunicorn", "--bind", "0.0.0.0:9696", "app:app"]
