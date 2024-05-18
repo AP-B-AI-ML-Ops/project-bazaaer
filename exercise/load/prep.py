@@ -47,7 +47,6 @@ def save_datasets(train_ds_norm, val_ds_norm, output_dir: str, needs_download: b
         os.makedirs(output_dir, exist_ok=True)
         tf.data.experimental.save(train_ds_norm, os.path.join(output_dir, 'train'))
         tf.data.experimental.save(val_ds_norm, os.path.join(output_dir, 'val'))
-    return train_ds_norm, val_ds_norm
 
 
 @flow
@@ -60,5 +59,5 @@ def preprocess_data_flow(data_dir: str = "../data/animal_data",
     train_ds, val_ds = load_datasets(data_dir, img_height, img_width, batch_size)
     train_ds, val_ds = prepare_datasets(train_ds, val_ds)
     train_ds_norm, val_ds_norm = normalize_datasets(train_ds, val_ds)
-    train_ds_norm, val_ds_norm = save_datasets(train_ds_norm, val_ds_norm, output_dir, needs_download=needs_download)
+    save_datasets(train_ds_norm, val_ds_norm, output_dir, needs_download=needs_download)
     return train_ds_norm, val_ds_norm
