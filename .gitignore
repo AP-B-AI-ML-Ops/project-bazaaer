@@ -7,3 +7,4 @@ mlartifacts/
 data/
 __pycache__/
 tuner_dir/
+*.csv
