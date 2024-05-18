@@ -71,7 +71,43 @@ def execute_model_training(full_train_ds, full_val_ds, hyperparameters):
 def register_final_model():
     run_id = mlflow.active_run().info.run_id
     model_uri = f"runs:/{run_id}/model"
-    mlflow.register_model(model_uri, "FinalModel")
+    mlflow.register_model(model_uri, name="FinalModel")
+
+@task
+def promote_best_model_to_production():
+    client = mlflow.tracking.MlflowClient()
+
+    model_name = "FinalModel"
+    models = client.search_model_versions(f"name='{model_name}'")
+
+    if not models:
+        raise ValueError(f"No models found with the name '{model_name}'.")
+
+    best_model_version = None
+    highest_val_accuracy = -1
+
+    for model in models:
+        # Retrieve the run associated with the model version
+        run_id = model.run_id
+        run = client.get_run(run_id)
+
+        # Extract the validation accuracy from metrics
+        val_accuracy = run.data.metrics.get('validation_accuracy')
+        if val_accuracy is not None and val_accuracy > highest_val_accuracy:
+            highest_val_accuracy = val_accuracy
+            best_model_version = model.version
+
+    if best_model_version:
+        client.transition_model_version_stage(
+            name=model_name,
+            version=best_model_version, 
+            stage="Production",
+            archive_existing_versions=True
+        )
+        print(f"Model version {best_model_version} set to production with validation accuracy {highest_val_accuracy}")
+    else:
+        raise Exception("No suitable model version found for promotion to production.")
+
 
 # Flow for model training
 @flow
@@ -85,3 +121,4 @@ def model_training_flow(output_dir="../data/animal_data_preprocessed", train_ds=
     with mlflow.start_run():
         execute_model_training(train_ds, val_ds, hyperparameters)
         register_final_model()
+    promote_best_model_to_production()
