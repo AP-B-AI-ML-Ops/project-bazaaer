@@ -19,55 +19,23 @@ pull:
 
 # the deployments section allows you to provide configuration for deploying flows
 deployments:
-- name: dataset_download_flow
+- name:
   version:
   tags: []
   description:
-  entrypoint: load/fetch.py:dataset_download_flow
+  schedule: {}
+  flow_name:
+  entrypoint:
   parameters: {}
   work_pool:
-    name: local_pool
+    name:
     work_queue_name:
     job_variables: {}
-  schedules: []
-- name: main_flow
+- name: main-deployment
   version:
   tags: []
   description:
   entrypoint: main.py:main_flow
-  parameters: {}
-  work_pool:
-    name: local_pool
-    work_queue_name:
-    job_variables: {}
-  schedules: []
-- name: preprocess_data_flow
-  version:
-  tags: []
-  description:
-  entrypoint: load/prep.py:preprocess_data_flow
-  parameters: {}
-  work_pool:
-    name: local_pool
-    work_queue_name:
-    job_variables: {}
-  schedules: []
-- name: hpo_flow
-  version:
-  tags: []
-  description:
-  entrypoint: train/hpo.py:hyperparameter_optimization_flow
-  parameters: {}
-  work_pool:
-    name: local_pool
-    work_queue_name:
-    job_variables: {}
-  schedules: []
-- name: model_training_flow
-  version:
-  tags: []
-  description:
-  entrypoint: train/train.py:model_training_flow
   parameters: {}
   work_pool:
     name: local_pool
