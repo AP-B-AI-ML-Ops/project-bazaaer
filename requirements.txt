@@ -1,0 +1,8 @@
+tensorflow
+mlflow
+prefect
+kaggle
+keras_tuner
+watchdog
+evidently
+psycopg
