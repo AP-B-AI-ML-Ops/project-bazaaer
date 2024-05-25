@@ -8,6 +8,8 @@ volumes:
 
 networks:
   back-tier:
+    driver: bridge
+
 
 services:
   app:

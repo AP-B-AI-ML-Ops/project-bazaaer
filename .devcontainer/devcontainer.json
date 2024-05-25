@@ -3,6 +3,10 @@
 {
   "name": "Anaconda (Python 3)",
   "dockerComposeFile": "docker-compose.yml",
+  "features": {
+		"ghcr.io/devcontainers/features/conda:1": {},
+		"ghcr.io/devcontainers/features/docker-in-docker:2": {}
+  },
   "service": "app",
   "workspaceFolder": "/workspaces/project-bazaaer",
   "customizations": {
