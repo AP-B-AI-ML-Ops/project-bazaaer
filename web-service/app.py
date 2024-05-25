@@ -12,7 +12,12 @@ from tensorflow.keras import layers
 
 app = Flask(__name__)
 
-mlflow.set_tracking_uri("http://127.0.0.1:5000")
+mlflow.set_tracking_uri("http://0.0.0.0:5000")
+
+print("POSTGRES_HOST:", os.getenv("POSTGRES_HOST"))
+print("POSTGRES_PORT:", os.getenv("POSTGRES_PORT"))
+print("POSTGRES_USER:", os.getenv("POSTGRES_USER"))
+print("POSTGRES_PASSWORD:", os.getenv("POSTGRES_PASSWORD"))
 
 CONNECT_STRING = f'host={os.getenv("POSTGRES_HOST")} port={os.getenv("POSTGRES_PORT")} user={os.getenv("POSTGRES_USER")} password={os.getenv("POSTGRES_PASSWORD")}'
 
@@ -64,13 +69,15 @@ def load_production_model(model_name):
     return model
 
 model_name = "FinalModel"
-model = load_production_model(model_name)
+try:
+    model = load_production_model(model_name)
+except Exception as e:
+    print(e)
+    model = None
 prep_db()
 
-# Initialize the global database connection
 global_conn = psycopg.connect(f"{CONNECT_STRING} dbname=production", row_factory=dict_row)
 
-# Close the connection when the application exits
 atexit.register(global_conn.close)
 
 
