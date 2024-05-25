@@ -6,3 +6,5 @@ keras_tuner
 watchdog
 evidently
 psycopg
+pipenv 
+pre-commit
