@@ -15,7 +15,9 @@ psycopg = "*"
 pipenv = "*"
 pre-commit = "*"
 pylint = "*"
-black = "*"
+isort = "*"
+install = "*"
+black = "==22.6.0"
 
 [dev-packages]
 pytest = "*"

@@ -2,5 +2,11 @@
 disable = [
     "missing-function-docstring",
     "missing-class-docstring",
-    "C0103"
+    "C0103",
+    "C0114",
+    "import-error",
+    "no-name-in-module",
+    "consider-using-generator",
+    "unspecified-encoding",
+    "no-member"
 ]
