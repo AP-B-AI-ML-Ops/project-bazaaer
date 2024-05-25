@@ -9,11 +9,39 @@ repos:
     -   id: check-yaml
     -   id: check-added-large-files
 
+-   repo: https://github.com/pycqa/isort
+    rev: 5.13.2
+    hooks:
+    -   id: isort
+        name: isort (python)
+-   repo: https://github.com/psf/black
+    rev: 22.6.0
+    hooks:
+    -   id: black
+        language_version: python3.11
+
 -   repo: local
     hooks:
-      - id: pytest
+    -   id: pytest
         name: pytest
         entry: pipenv run pytest
         language: system
+        pass_filenames: false
+        always_run: true
+        args: [
+            "exercise/"
+        ]
+
+-   repo: local
+    hooks:
+    -   id: pylint
+        name: pylint
+        entry: pipenv run pylint
+        language: system
         types: [python]
-        stages: [commit]
+        args: [
+            "-rn", # Only display messages
+            "-sn", # Don't display the score
+            "--recursive=y",
+            "exercise/"
+        ]
