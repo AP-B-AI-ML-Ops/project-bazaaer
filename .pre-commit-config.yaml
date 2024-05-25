@@ -39,6 +39,7 @@ repos:
         entry: pipenv run pylint
         language: system
         types: [python]
+        pass_filenames: false
         args: [
             "-rn", # Only display messages
             "-sn", # Don't display the score
