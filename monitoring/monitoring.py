@@ -67,6 +67,8 @@ def prep_data(output_dir: str):
         for batch in tqdm(dataset):
             images, labels = batch
             for img, lbl in zip(images, labels):
+                if lbl.numpy() == "":
+                    continue
                 img_array = img.numpy()
                 mean = np.mean(img_array, axis=(0, 1))
                 height, width, _ = img_array.shape
@@ -82,7 +84,7 @@ def prep_data(output_dir: str):
 
     train_ds = tf.data.Dataset.load(os.path.join(output_dir, 'train'))
     train_stats = calculate_dataset_statistics(train_ds)
-    train_stats.to_csv("val_stats.csv", index=False)
+    train_stats.to_csv("train_stats.csv", index=False)
 
     with psycopg.connect(f'{CONNECT_STRING} dbname=production', autocommit=True) as conn:
         current_stats = conn.execute("SELECT * FROM requests")
@@ -141,11 +143,15 @@ def monitor():
     with psycopg.connect(f'{CONNECT_STRING} dbname=test') as conn:
         with conn.cursor() as cursor:
             for date in pd.date_range(start_date, end_date):
-                current_data = raw_data[raw_data['timestamp'].dt.date == date.date()]
-                print(current_data)
-                current_data = current_data.drop(columns=['timestamp'])
-                prediction_drift, num_drifted_cols, share_missing_vals = calculate_metrics(current_data, ref_data)
-                save_metrics_to_db(cursor, date, prediction_drift, num_drifted_cols, share_missing_vals)
+                try:
+                    current_data = raw_data[raw_data['timestamp'].dt.date == date.date()]
+                    current_data = current_data.drop(columns=['timestamp'])
+                    print(ref_data['label'])
+                    prediction_drift, num_drifted_cols, share_missing_vals = calculate_metrics(current_data, ref_data)
+                    save_metrics_to_db(cursor, date, prediction_drift, num_drifted_cols, share_missing_vals)
+                except Exception as e:
+                    print(f"Error for date {date}: {e}")
+                    continue
 
 
 if __name__ == "__main__":
