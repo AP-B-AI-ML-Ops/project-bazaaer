@@ -43,10 +43,10 @@ Tasks involved in the Register flow:
 ! if any of the sh scripts do not work, run: **sed -i 's/\r$//' [name_of_scirpt]** and then run the script again, or just copy the commands from inside the script.
 
 1. Clone in container volume
-2. Wait for packages to install
-3. Go to the exercise directory and run the script 'servers.sh'
-4. Make a local process pool callded local_pool in the prefect ui
-5. Open new terminal and run: 'prefect deploy'
+2. Wait for packages to install and for the prefect and ml servers to start
+3. Make a local process pool callded local_pool in the prefect ui
+4. Open a new tersminal and go te the exercise directory
+5. Run command: 'prefect deploy'
 6. Select the main-deployment
 7. Start a worker with command: prefect worker start --pool 'local_pool'
 8. Run the deployment
