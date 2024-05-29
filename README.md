@@ -4,7 +4,7 @@ I will use a dataset containing images of various animals: https://www.kaggle.co
 
 # Project Explanation
 
-The goal of this project is to develop a machine learning model capable of interpreting sign language. I want to make i so the model and web server support batch processing, so you can make a word in sign language and the model will respond with an estimateof that word.
+The goal of this project is to develop a machine learning model capable of interpreting various images of animals. You go to the zoo and take lots of pictures, but forgot which animals you saw. Run the pictures through the web service and check the results!
 
 # Flows & Actions
 
