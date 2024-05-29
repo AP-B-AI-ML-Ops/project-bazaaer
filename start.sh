@@ -1,4 +1,5 @@
-chmod +x ./kaggle.sh
+sudo chmod +x kaggle.sh
+sed -i 's/\r$//' ./kaggle.sh
 ./kaggle.sh
 
 if [ -f "requirements.txt" ]; then

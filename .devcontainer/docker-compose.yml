@@ -17,7 +17,6 @@ services:
     env_file:
         - ../.env
     volumes:
-      - ../:/workspaces/project-bazaaer
       - grafana-data-config-datasources:/workspaces/project-bazaaer/.grafana/datasources
       - grafana-data-config-dashboards:/workspaces/project-bazaaer/.grafana/dashboards
       - grafana-data-dashboards:/workspaces/project-bazaaer/dashboards

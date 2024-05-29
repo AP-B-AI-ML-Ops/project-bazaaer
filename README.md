@@ -37,3 +37,21 @@ Tasks involved in the Register flow:
 1. **Train and Log Model**: Conduct model training while logging performance metrics.
 2. **Experiment Runs**: Collect data from various training runs.
 3. **Model Selection**: Choose the best performing model based on the metrics.
+
+# Start project:
+
+! if any of the sh scripts do not work, run: **sed -i 's/\r$//' [name_of_scirpt]** and then run the script again, or just copy the commands from inside the script.
+
+1. Clone in container volume
+2. Wait for packages to install
+3. Go to the exercise directory and run the script 'servers.sh'
+4. Make a local process pool callded local_pool in the prefect ui
+5. Open new terminal and run: 'prefect deploy'
+6. Select the main-deployment
+7. Start a worker with command: prefect worker start --pool 'local_pool'
+8. Run the deployment
+9. Start the webserver by running 'web-service.sh'
+10. Make a POST to http://localhost:9696/predict with form-data. Key: zipfile OR image. Value: a zipfile with multiple .jpg images OR a single jpg
+    ![alt text](image-1.png)
+11. Go the monitoring and run the python script monitoring.py. This takes the data uploaded to the webserver as reference data for calculating the metrics.
+12. Open grafana, go to import a dashboard, and copy the contents of dashboards/test.json.
